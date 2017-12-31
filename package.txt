@@ -1,5 +1,5 @@
 NAME=shadow
 VERSION=4.5
-REVISION=3
+REVISION=4
 SRC=https://github.com/shadow-maint/shadow/releases/download/4.5/shadow-4.5.tar.xz
 SRCMD5=c350da50c2120de6bb29177699d89fe3
