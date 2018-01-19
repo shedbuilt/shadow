@@ -1,9 +1,7 @@
 #!/bin/bash
-pwconv
-grpconv
-sed -i 's/yes/no/' /etc/default/useradd
-# Set root password to default if not set
-ROOTSHADOW=$(grep "^root" /etc/shadow)
-if [[ $ROOTSHADOW =~ ^'root:!!:' ]]; then
+if [ "$SHED_BUILDMODE" == 'bootstrap' ]; then
+    pwconv
+    grpconv
+    sed -i 's/yes/no/' /etc/default/useradd
     echo 'root:shedbuilt' | chpasswd
 fi
