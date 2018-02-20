@@ -14,4 +14,5 @@ if [ "$SHED_BUILDMODE" == 'bootstrap' ] || $SHEDPKG_INSTALLED_DEFAULTS; then
     grpconv
     sed -i 's/yes/no/' /etc/default/useradd
     echo 'root:shedbuilt' | chpasswd
+    install -v -dm755 /root/.config
 fi
