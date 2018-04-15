@@ -9,7 +9,7 @@ if [ ! -e /etc/group ]; then
     install -v -m644 /etc/group.default /etc/group
     SHEDPKG_INSTALLED_DEFAULTS=true
 fi
-if [ "$SHED_BUILDMODE" == 'bootstrap' ] || $SHEDPKG_INSTALLED_DEFAULTS; then
+if [ "$SHED_BUILD_MODE" == 'bootstrap' ] || $SHEDPKG_INSTALLED_DEFAULTS; then
     pwconv
     grpconv
     sed -i 's/yes/no/' /etc/default/useradd

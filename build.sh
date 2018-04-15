@@ -8,8 +8,8 @@ sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' \
 sed -i 's/1000/999/' etc/useradd
 ./configure --sysconfdir=/etc \
             --with-group-name-max-length=32 && \
-make -j $SHED_NUMJOBS && \
-make DESTDIR="$SHED_FAKEROOT" install || exit 1
-mv -v "${SHED_FAKEROOT}/usr/bin/passwd" "${SHED_FAKEROOT}/bin"
+make -j $SHED_NUM_JOBS && \
+make DESTDIR="$SHED_FAKE_ROOT" install || exit 1
+mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin"
 # Provide basic user skeleton
-install -v -dm755 "${SHED_FAKEROOT}/etc/skel/.config"
+install -v -dm755 "${SHED_FAKE_ROOT}/etc/skel/.config"
