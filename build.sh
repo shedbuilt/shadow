@@ -12,4 +12,4 @@ make -j $SHED_NUM_JOBS &&
 make DESTDIR="$SHED_FAKE_ROOT" install &&
 mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin" &&
 # Provide basic user skeleton
-install -v -dm755 "${SHED_FAKE_ROOT}/etc/skel/.config"
+install -v -dm755 "${SHED_FAKE_ROOT}/usr/share/defaults/etc/skel/.config"
