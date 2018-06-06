@@ -14,6 +14,4 @@ sed -i 's/1000/999/' etc/useradd &&
 make -j $SHED_NUM_JOBS &&
 make DESTDIR="$SHED_FAKE_ROOT" install &&
 # Rearrange
-mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin" &&
-# Create default user skeleton
-install -v -dm755 "${SHED_FAKE_ROOT}/usr/share/defaults/etc/skel/.config"
+mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin"
