@@ -14,4 +14,15 @@ sed -i 's/1000/999/' etc/useradd &&
 make -j $SHED_NUM_JOBS &&
 make DESTDIR="$SHED_FAKE_ROOT" install &&
 # Rearrange
-mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin"
+if [ -n "${SHED_PKG_LOCAL_OPTIONS[pam]}" ]; then
+    install -v -dm755 "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc/{default,pam.d} &&
+    install -v -m644 "${SHED_PKG_CONTRIB_DIR}"/* "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc/pam.d || exit 1
+else
+    install -v -dm755 "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc/default &&
+    install -v -m644 "${SHED_FAKE_ROOT}"/etc/limits "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc &&
+    install -v -m644 "${SHED_FAKE_ROOT}"/etc/login.access "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc || exit 1
+fi
+mv -v "${SHED_FAKE_ROOT}/usr/bin/passwd" "${SHED_FAKE_ROOT}/bin" &&
+install -v -m644 "${SHED_FAKE_ROOT}"/etc/default/useradd "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc/default &&
+install -v -m644 "${SHED_FAKE_ROOT}"/etc/login.defs "${SHED_FAKE_ROOT}${SHED_PKG_DEFAULTS_INSTALL_DIR}"/etc &&
+rm -rf "${SHED_FAKE_ROOT}"/etc

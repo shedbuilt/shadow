@@ -1,9 +1,9 @@
 NAME=shadow
 VERSION=4.6
-REVISION=2
+REVISION=3
 SRC=https://github.com/shadow-maint/shadow/releases/download/4.6/shadow-4.6.tar.xz
 SRCMD5=b491fecbf1232632c32ff8f1437fd60e
 BUILDDEPS=pam
 INSTALLDEPS=pam
-OPTIONS=bootstrap|release
-DEFAULTS=release
+OPTIONS=bootstrap|release (pam)
+DEFAULTS=release pam
